@@ -1,4 +1,4 @@
-import React, { useRef,useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Canvas from '@page/canvas'
 // gl.COLOR_BUFFER_BIT   //颜色缓冲区
 // gl.DEPTH_BUFFER_BIT   //深度缓冲区
@@ -7,7 +7,7 @@ import Canvas from '@page/canvas'
 function HelloCanvas () {
   const [gl, setGl] = useState()
   useEffect(() => {
-    if (gl) {
+    if (gl) { // TODO: mounted效果怎么做到?
       gl.clearColor(0.0, 0.0, 0.0, 1.0)
       gl.clear(gl.COLOR_BUFFER_BIT) // 清空颜色缓冲区
     }

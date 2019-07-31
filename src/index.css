@@ -1,0 +1,19 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+button{
+  padding: 5px;
+  margin: 6px;
+  border: 0;
+  color: #fff;
+  background: #1976d2;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover{
+  background: #1996d3;
+}
+a{
+  color: #fff;
+}

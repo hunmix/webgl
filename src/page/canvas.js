@@ -1,6 +1,6 @@
-import React, { useRef,useEffect, useState } from 'react'
+import React, { useRef,useEffect } from 'react'
 
-function Canvas ({ set }) {
+function Canvas ({ set, width, height }) {
   const canvas = useRef(null)
   useEffect(() => {
     const canvasDom = canvas.current
@@ -8,7 +8,7 @@ function Canvas ({ set }) {
     set(gl)
   }, [canvas])
   return (
-    <canvas ref={canvas}></canvas>
+    <canvas ref={canvas} width={width || 400} height={height || 400}></canvas>
   )
 }
 

@@ -1,0 +1,7 @@
+.button-box{
+  display: flex;
+}
+.detail-box{
+  display: flex;
+  justify-content: center;
+}
