@@ -1,12 +1,12 @@
 import React from 'react';
 import routes from './router/config'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-
+import RouteWithSubRoutes from './router'
+import { BrowserRouter as Router} from "react-router-dom"
 function App() {
   return (
-    <div className="App">
-      111
-    </div>
+    <Router>
+      {routes.map((route, index) => <RouteWithSubRoutes key={index} { ...route } />)}
+    </Router>
   )
 }
 
