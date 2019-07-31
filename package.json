@@ -65,7 +65,10 @@
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "globals": {
+      "initShaders": "readonly"
+    }
   },
   "browserslist": {
     "production": [
