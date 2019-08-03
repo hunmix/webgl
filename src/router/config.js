@@ -4,6 +4,7 @@ import HelloPoint2 from '@page/01/HelloPoint2'
 import ClickedPoint from '@page/01/ClickedPoint'
 import ColoredPoints from '@page/01/ColoredPoints'
 import MultiPoint from '@page/02/MultiPoint'
+import Triangle from '@page/02/Triangle'
 
 const routes = [
   {
@@ -29,6 +30,10 @@ const routes = [
   {
     path: '/02/MultiPoint',
     component: MultiPoint
+  },
+  {
+    path: '/02/Triangle',
+    component: Triangle
   }
 ]
 
