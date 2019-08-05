@@ -9,9 +9,9 @@ function App() {
     <Router>
       <div className="button-box">
         {routes.map((route, index) => (
-          <button key={index}>
-            <Link to={route.path}>{route.path}</Link>
-          </button>
+          <Link to={route.path} key={index}>
+            <button>{route.path}</button>
+          </Link>
         ))}
       </div>
       <div className="detail-box">
