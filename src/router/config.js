@@ -7,6 +7,9 @@ import MultiPoint from '@page/02/MultiPoint'
 import HelloTriangle from '@page/02/HelloTriangle'
 import HelloRectangle from '@page/02/HelloRectangle'
 import HelloQuadFan from '@page/02/HelloQuadFan'
+import TranslatedTriangle from '@page/02/TranslatedTriangle'
+import RotatedTriangle from '@page/02/RotatedTriangle'
+import RotatedTriangleMatrix from '@page/02/RotatedTriangleMatrix'
 
 const routes = [
   {
@@ -44,6 +47,18 @@ const routes = [
   {
     path: '/02/HelloQuadFan',
     component: HelloQuadFan
+  },
+  {
+    path: '/02/TranslatedTriangle',
+    component: TranslatedTriangle
+  },
+  {
+    path: '/02/RotatedTriangle',
+    component: RotatedTriangle
+  },
+  {
+    path: '/02/RotatedTriangleMatrix',
+    component: RotatedTriangleMatrix
   }
 ]
 
