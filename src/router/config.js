@@ -3,6 +3,7 @@ import HelloPoint from '@page/01/HelloPoint'
 import HelloPoint2 from '@page/01/HelloPoint2'
 import ClickedPoint from '@page/01/ClickedPoint'
 import ColoredPoints from '@page/01/ColoredPoints'
+
 import MultiPoint from '@page/02/MultiPoint'
 import HelloTriangle from '@page/02/HelloTriangle'
 import HelloRectangle from '@page/02/HelloRectangle'
@@ -10,6 +11,8 @@ import HelloQuadFan from '@page/02/HelloQuadFan'
 import TranslatedTriangle from '@page/02/TranslatedTriangle'
 import RotatedTriangle from '@page/02/RotatedTriangle'
 import RotatedTriangleMatrix from '@page/02/RotatedTriangleMatrix'
+
+import RotatedTranslatedTriangle from '@page/03/RotatedTranslatedTriangle'
 
 const routes = [
   {
@@ -59,6 +62,10 @@ const routes = [
   {
     path: '/02/RotatedTriangleMatrix',
     component: RotatedTriangleMatrix
+  },
+  {
+    path: '/03/RotatedTranslatedTriangle',
+    component: RotatedTranslatedTriangle
   }
 ]
 

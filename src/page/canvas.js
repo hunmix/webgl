@@ -6,7 +6,7 @@ function Canvas ({ set, width, height, ...props }) {
     const canvasDom = canvas.current
     const gl = canvasDom.getContext('webgl')
     set(gl)
-  }, [canvas])
+  }, [canvas, set])
   return (
     <canvas ref={canvas} width={width || 400} height={height || 400} {...props}></canvas>
   )
