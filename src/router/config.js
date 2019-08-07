@@ -15,6 +15,8 @@ import RotatedTriangleMatrix from '@page/02/RotatedTriangleMatrix'
 import RotatedTranslatedTriangle from '@page/03/RotatedTranslatedTriangle'
 import RotatingTriangle from '@page/03/RotatingTriangle'
 
+import MultiAttributeSize from '@page/04/MultiAttributeSize'
+
 const routes = [
   {
     path: '/01/helloCanvas',
@@ -71,6 +73,10 @@ const routes = [
   {
     path: '/03/RotatingTriangle',
     component: RotatingTriangle
+  },
+  {
+    path: '/04/MultiAttributeSize',
+    component: MultiAttributeSize
   }
 ]
 
