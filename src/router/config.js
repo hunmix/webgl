@@ -13,6 +13,7 @@ import RotatedTriangle from '@page/02/RotatedTriangle'
 import RotatedTriangleMatrix from '@page/02/RotatedTriangleMatrix'
 
 import RotatedTranslatedTriangle from '@page/03/RotatedTranslatedTriangle'
+import RotatingTriangle from '@page/03/RotatingTriangle'
 
 const routes = [
   {
@@ -66,6 +67,10 @@ const routes = [
   {
     path: '/03/RotatedTranslatedTriangle',
     component: RotatedTranslatedTriangle
+  },
+  {
+    path: '/03/RotatingTriangle',
+    component: RotatingTriangle
   }
 ]
 
