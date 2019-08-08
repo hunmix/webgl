@@ -16,6 +16,8 @@ import RotatedTranslatedTriangle from '@page/03/RotatedTranslatedTriangle'
 import RotatingTriangle from '@page/03/RotatingTriangle'
 
 import MultiAttributeSize from '@page/04/MultiAttributeSize'
+import MultiAttributeColor from '@page/04/MultiAttributeColor'
+import TextureQuad from '@page/04/TextureQuad'
 
 const routes = [
   {
@@ -77,6 +79,14 @@ const routes = [
   {
     path: '/04/MultiAttributeSize',
     component: MultiAttributeSize
+  },
+  {
+    path: '/04/MultiAttributeColor',
+    component: MultiAttributeColor
+  },
+  {
+    path: '/04/TextureQuad',
+    component: TextureQuad
   }
 ]
 
