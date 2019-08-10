@@ -79,6 +79,8 @@ class RotatedTranslatedTriangle extends Component {
       case 'rotateRight':
         state = { ANGLE: ANGLE - 5 }
         break
+      default:
+        state = { Tx: Tx - 0.1 }
     }
     await this.setStateSync(state)
     this.draw()

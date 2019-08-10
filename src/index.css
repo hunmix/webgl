@@ -11,9 +11,9 @@ button{
   border-radius: 4px;
   cursor: pointer;
 }
-button:hover{
+/* button:hover{
   background: #1996d3;
-}
+} */
 a{
   color: #fff;
 }

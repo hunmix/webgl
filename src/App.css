@@ -2,6 +2,9 @@
   display: flex;
   flex-wrap: wrap;
 }
+.button__active{
+  background: #11d493;
+}
 .detail-box{
   display: flex;
   justify-content: center;

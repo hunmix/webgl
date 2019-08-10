@@ -33,37 +33,31 @@ class MultiAttributeSize extends Component {
     const FSHADER_SOURCE = `
     precision mediump float;
     uniform sampler2D u_Sampler;
+    uniform sampler2D u_Sampler2;
     varying vec2 v_TexCoord;
     void main() {
-      gl_FragColor = texture2D(u_Sampler, v_TexCoord);
+      vec4 color1 = texture2D(u_Sampler, v_TexCoord);
+      vec4 color2 = texture2D(u_Sampler2, v_TexCoord);
+      gl_FragColor = color1 * color2;
     }
     `
     // this.initShader(gl, VSHADER_SOURCE, FSHADER_SOURCE)
     utils.initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)
 
-    this.draw('normal')
+    this.draw()
   }
-  async draw (type) {
+  async draw () {
     const { gl } = this.state
-    let verticesTexCoords
-    if (type === 'normal') { // 纹理坐标
-      verticesTexCoords = new Float32Array([
-        -0.5,  0.5,   0.0, 1.0,
-        -0.5, -0.5,   0.0, 0.0,
-         0.5,  0.5,   1.0, 1.0,
-         0.5, -0.5,   1.0, 0.0
-      ])
-    } else {
-      verticesTexCoords = new Float32Array([
-        -0.5,  0.5,   -0.3, 1.7,
-        -0.5, -0.5,   -0.3, -0.2,
-         0.5,  0.5,   1.7, 1.7,
-          .5, -0.5,   1.7, -0.2
-      ])
-    }
+    const verticesTexCoords = new Float32Array([
+      -0.5,  0.5,   0.0, 1.0,
+      -0.5, -0.5,   0.0, 0.0,
+       0.5,  0.5,   1.0, 1.0,
+       0.5, -0.5,   1.0, 0.0
+    ])
     
     const POINT_COUNT = 4 // 顶点个数
     const IMAGE_URL = `${process.env.PUBLIC_URL}/sky.jpg`
+    const IMAGE_URL2 = `${process.env.PUBLIC_URL}/circle.gif`
     
     const vertexTexCoordBuffer = gl.createBuffer()
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexTexCoordBuffer)
@@ -80,30 +74,35 @@ class MultiAttributeSize extends Component {
     gl.enableVertexAttribArray(a_TexCoord)
     
     const texture = gl.createTexture()
+    const texture2 = gl.createTexture()
+
     const u_Sampler = gl.getUniformLocation(gl.program, 'u_Sampler')
+    const u_Sampler2 = gl.getUniformLocation(gl.program, 'u_Sampler2')
     
-    const image = await this.loadImage(IMAGE_URL)
+    // const image = await this.loadImage(IMAGE_URL)
+    // const image2 = await this.loadImage(IMAGE_URL2)
+
+    await this.initTexture(IMAGE_URL, texture, u_Sampler, 0) // 初始化纹理1
+    await this.initTexture(IMAGE_URL2, texture2, u_Sampler2, 1)// 初始化纹理2
+
+    gl.clear(gl.COLOR_BUFFER_BIT)
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, POINT_COUNT)
+  }
+  async initTexture (url, texture, sampler, textureUnitIndex) {
+    const { gl } = this.state
+    const image = await this.loadImage(url)
 
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1) // 反转y轴
 
-    gl.activeTexture(gl.TEXTURE0) // 激活纹理单元
+    gl.activeTexture(gl[`TEXTURE${textureUnitIndex}`]) // 激活纹理单元
 
     gl.bindTexture(gl.TEXTURE_2D, texture) // 绑定纹理对象
 
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR) // 设置纹理参数
 
-    if (type === 's') { // 纹理参数设置
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
-    } else if (type === 't') {
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.MIRRORED_REPEAT) 
-    }
-
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image) // 将纹理图像分配给纹理对象
 
-    gl.uniform1i(u_Sampler, 0) // 将纹理单元传递给片元着色器
-
-    gl.clear(gl.COLOR_BUFFER_BIT)
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, POINT_COUNT)
+    gl.uniform1i(sampler, textureUnitIndex) // 将纹理单元传递给片元着色器
   }
   loadImage (url) {
     return new Promise((resolve, reject) => {
@@ -118,12 +117,6 @@ class MultiAttributeSize extends Component {
     return (
       <div>
         <Canvas set={this.glReady}></Canvas>
-        <div>
-          <button onClick={() => this.draw('normal')}>normal</button>
-          <button onClick={() => this.draw('min')}>small(REPEAT)</button>
-          <button onClick={() => this.draw('s')}>small-WRAP_S(CLAMP_TO_EDGE)</button>
-          <button onClick={() => this.draw('t')}>small-WRAP_T(MIRRORED_REPEAT)</button>
-        </div>
       </div>
     )
   }

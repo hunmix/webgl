@@ -18,6 +18,7 @@ import RotatingTriangle from '@page/03/RotatingTriangle'
 import MultiAttributeSize from '@page/04/MultiAttributeSize'
 import MultiAttributeColor from '@page/04/MultiAttributeColor'
 import TextureQuad from '@page/04/TextureQuad'
+import MultiTexture from '@page/04/MultiTexture'
 
 const routes = [
   {
@@ -87,6 +88,10 @@ const routes = [
   {
     path: '/04/TextureQuad',
     component: TextureQuad
+  },
+  {
+    path: '/04/MultiTexture',
+    component: MultiTexture
   }
 ]
 
