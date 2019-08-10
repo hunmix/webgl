@@ -4,9 +4,6 @@ import utils from '@/lib/index' // 初始化着色器, 细节先不管
 const { Matrix4 } = utils
 
 class MultiAttributeSize extends Component {
-  constructor (props) {
-    super(props)
-  }
   glReady = async (gl) => {
     // await this.setStateSync({ gl })
 
