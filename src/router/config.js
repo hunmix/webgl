@@ -20,6 +20,9 @@ import MultiAttributeColor from '@page/04/MultiAttributeColor'
 import TextureQuad from '@page/04/TextureQuad'
 import MultiTexture from '@page/04/MultiTexture'
 
+import LookAtTriangle from '@page/05/LookAtTriangle'
+import LookAtTriangleMatrix from '@page/05/LookAtTriangleMatrix'
+
 const routes = [
   {
     path: '/01/helloCanvas',
@@ -92,6 +95,14 @@ const routes = [
   {
     path: '/04/MultiTexture',
     component: MultiTexture
+  },
+  {
+    path: '/05/LookAtTriangle',
+    component: LookAtTriangle
+  },
+  {
+    path: '/05/LookAtTriangleMatrix',
+    component: LookAtTriangleMatrix
   }
 ]
 

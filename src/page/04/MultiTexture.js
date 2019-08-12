@@ -31,7 +31,7 @@ class MultiAttributeSize extends Component {
     }
     `
     const FSHADER_SOURCE = `
-    precision mediump float;
+    precision mediump float; // 声明浮点数为中精度
     uniform sampler2D u_Sampler;
     uniform sampler2D u_Sampler2;
     varying vec2 v_TexCoord;
