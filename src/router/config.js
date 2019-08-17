@@ -23,6 +23,7 @@ import MultiTexture from '@page/04/MultiTexture'
 import LookAtTriangle from '@page/05/LookAtTriangle'
 import LookAtTriangleMatrix from '@page/05/LookAtTriangleMatrix'
 import OrthoView from '@page/05/OrthoView'
+import PerspectiveView from '@page/05/PerspectiveView'
 
 const routes = [
   {
@@ -108,6 +109,10 @@ const routes = [
   {
     path: '/05/OrthoView',
     component: OrthoView
+  },
+  {
+    path: '/05/PerspectiveView',
+    component: PerspectiveView
   }
 ]
 
