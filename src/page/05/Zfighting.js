@@ -7,7 +7,8 @@ class MultiAttributeSize extends Component {
   constructor () {
     super()
     this.state = {
-      gl: null
+      gl: null,
+      isEnablePolygon: false
     }
   }
   setStateSync = (state) => {
@@ -44,24 +45,19 @@ class MultiAttributeSize extends Component {
     
     const vertices = new Float32Array([
       // Vertex coordinates and color
-      0.0,  1.0,   0.0,  0.4,  0.4,  1.0,  // The front blue one 
-     -0.5, -1.0,   0.0,  0.4,  0.4,  1.0,
-      0.5, -1.0,   0.0,  1.0,  0.4,  0.4,
+      0.0,  2.5,  -5.0,  0.4,  1.0,  0.4, // The green triangle
+      -2.5, -2.5,  -5.0,  0.4,  1.0,  0.4,
+      2.5, -2.5,  -5.0,  1.0,  0.4,  0.4, 
 
-      0.0,  1.0,  -2.0,  1.0,  1.0,  0.4, // The middle yellow one
-     -0.5, -1.0,  -2.0,  1.0,  1.0,  0.4,
-      0.5, -1.0,  -2.0,  1.0,  0.4,  0.4, 
-
-      0.0,  1.0,  -4.0,  0.4,  1.0,  0.4, // The back green one
-     -0.5, -1.0,  -4.0,  0.4,  1.0,  0.4,
-      0.5, -1.0,  -4.0,  1.0,  0.4,  0.4, 
+      0.0,  3.0,  -5.0,  1.0,  0.4,  0.4, // The yellow triagle
+      -3.0, -3.0,  -5.0,  1.0,  1.0,  0.4,
+      3.0, -3.0,  -5.0,  1.0,  1.0,  0.4, 
     ])
 
     const viewMatrix = new Matrix4()
     const projMatrix = new Matrix4()
-    const modelMatrix = new Matrix4()
     const mvpMatrix = new Matrix4()
-    viewMatrix.setLookAt(0, 0, 5, 0, 0, -100, 0, 1, 0)// 视点, 观察目标点, 正方向
+    viewMatrix.setLookAt(3.06, 2.5, 10.0, 0, 0, -2, 0, 1, 0)// 视点, 观察目标点, 正方向(TODO:只有这个角度才能完美看见斑驳，why?)
     projMatrix.setPerspective(30, 1, 1, 100)
 
     const buffer = gl.createBuffer()
@@ -78,18 +74,15 @@ class MultiAttributeSize extends Component {
     gl.enableVertexAttribArray(a_Color)
 
     const u_MvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix')
-    modelMatrix.setTranslate(0.75, 0, 0)
-    mvpMatrix.set(projMatrix).multiply(viewMatrix).multiply(modelMatrix)
+    mvpMatrix.set(projMatrix).multiply(viewMatrix)
     gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements)
     
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
+    gl.clear(gl.COLOR_BUFFER_BIT)
     gl.enable(gl.DEPTH_TEST) // 开启隐藏面消除(离视野近的图形会遮挡后面的图形)
-    gl.drawArrays(gl.TRIANGLES, 0, 9)
-    
-    modelMatrix.setTranslate(-0.75, 0, 0)
-    mvpMatrix.set(projMatrix).multiply(viewMatrix).multiply(modelMatrix)
-    gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements)
-    gl.drawArrays(gl.TRIANGLES, 0, 9)
+    gl.enable(gl.POLYGON_OFFSET_FILL)
+    gl.drawArrays(gl.TRIANGLES, 0, 3)
+    gl.polygonOffset(1.0, 1.0)
+    gl.drawArrays(gl.TRIANGLES, 3, 3)
   }
   render() {
     return (

@@ -24,6 +24,7 @@ import LookAtTriangle from '@page/05/LookAtTriangle'
 import LookAtTriangleMatrix from '@page/05/LookAtTriangleMatrix'
 import OrthoView from '@page/05/OrthoView'
 import PerspectiveView from '@page/05/PerspectiveView'
+import Zfighting from '@page/05/Zfighting'
 
 const routes = [
   {
@@ -113,6 +114,10 @@ const routes = [
   {
     path: '/05/PerspectiveView',
     component: PerspectiveView
+  },
+  {
+    path: '/05/Zfighting',
+    component: Zfighting
   }
 ]
 
