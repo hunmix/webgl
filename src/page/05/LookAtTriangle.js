@@ -26,9 +26,10 @@ class MultiAttributeSize extends Component {
       attribute vec4 a_Position;
       attribute vec4 a_Color;
       uniform mat4 u_ViewMirtix;
+      uniform mat4 u_ProjMatrix;
       varying vec4 v_Color;
       void main () {
-        gl_Position = u_ViewMirtix * a_Position;
+        gl_Position = u_ProjMatrix * u_ViewMirtix * a_Position;
         v_Color = a_Color; 
       }
     `
@@ -48,8 +49,10 @@ class MultiAttributeSize extends Component {
       0.5, -0.5, 0.0, 1.0, 0.0, 0.0
     ])
 
-    const matrix = new Matrix4()
-    const viewMatrix = matrix.setLookAt(0.25, 0.25, 0.25, 0.0, 0.0, 0.0, 0, 1, 0)// 视点, 观察目标点, 正方向
+    const viewMatrix = new Matrix4()
+    viewMatrix.setLookAt(0.25, 0.25, 0.25, 0.0, 0.0, 0.0, 0, 1, 0)// 视点, 观察目标点, 正方向
+    const projMatrix = new Matrix4()
+    projMatrix.setOrtho(-1.0, 1.0, -1.0, 1.0, 0.0, 3.0)
 
     const buffer = gl.createBuffer()
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
@@ -64,8 +67,10 @@ class MultiAttributeSize extends Component {
     gl.vertexAttribPointer(a_Color, 3, gl.FLOAT, false, FSIZE * 6, FSIZE * 3)
     gl.enableVertexAttribArray(a_Color)
     const u_ViewMirtix = gl.getUniformLocation(gl.program, 'u_ViewMirtix')
+    const u_ProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix')
 
     gl.uniformMatrix4fv(u_ViewMirtix, false, viewMatrix.elements)
+    gl.uniformMatrix4fv(u_ProjMatrix, false, projMatrix.elements)
 
     gl.clear(gl.COLOR_BUFFER_BIT)
     gl.drawArrays(gl.TRIANGLES, 0, 3)

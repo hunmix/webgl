@@ -9,7 +9,11 @@ class MultiAttributeSize extends Component {
     this.state = {
       gl: null,
       vertices: [],
-      modelViewMatrix: null
+      modelViewMatrix: null,
+      left: -1.0,
+      right: 1.0,
+      top: 1.0,
+      buttom: -1.0
     }
   }
   setStateSync = (state) => {
@@ -28,9 +32,10 @@ class MultiAttributeSize extends Component {
       attribute vec4 a_Position;
       attribute vec4 a_Color;
       uniform mat4 u_ViewMatrix;
+      uniform mat4 u_ProjMatrix;
       varying vec4 v_Color;
       void main () {
-        gl_Position = u_ViewMatrix * a_Position;
+        gl_Position = u_ProjMatrix * u_ViewMatrix * a_Position;
         v_Color = a_Color; 
       }
     `
@@ -123,15 +128,29 @@ class MultiAttributeSize extends Component {
     })
     this.draw()
   }
+  handleClick = async (left, right, buttom, top) => {
+    await this.setStateSync({
+      left,
+      right,
+      top,
+      buttom
+    })
+    this.draw()
+  }
   draw = () => { // 设置矩阵并传值
-    const { gl,eyeX, eyeY, eyeZ } = this.state
+    const { gl,eyeX, eyeY, eyeZ, left, right, top, buttom } = this.state
 
     const matrix = new Matrix4()
     const viewMatrix = matrix.setLookAt(eyeX, eyeY, eyeZ, 0.0, 0.0, 0.0, 0, 1, 0)
+    const projMatrix = new Matrix4()
+    projMatrix.setOrtho(left, right, top, buttom, 0.0, 2.0) // 设置投影矩阵，near: 0.0, far: 2.0
 
     const u_ViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix')
-
     gl.uniformMatrix4fv(u_ViewMatrix, false, viewMatrix.elements)
+
+    const u_ProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix')
+    gl.uniformMatrix4fv(u_ProjMatrix, false, projMatrix.elements)
+
 
     gl.clear(gl.COLOR_BUFFER_BIT)
     gl.drawArrays(gl.TRIANGLES, 0, 9)
@@ -141,6 +160,9 @@ class MultiAttributeSize extends Component {
       <div>
         <Canvas set={this.glReady}></Canvas>
         <p>按方向键调整方向</p>
+        <button onClick={() => {this.handleClick(-1.0, 1.0, -1.0, 1.0)}}>1, 1</button>
+        <button onClick={() => {this.handleClick(-0.5, 0.5, -0.5, 0.5)}}>0.5, 0.5</button>
+        <button onClick={() => {this.handleClick(-0.3, 0.3, -1.0, 1.0)}}>0.3, 1</button>
       </div>
     )
   }
