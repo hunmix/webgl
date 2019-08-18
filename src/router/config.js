@@ -25,6 +25,7 @@ import LookAtTriangleMatrix from '@page/05/LookAtTriangleMatrix'
 import OrthoView from '@page/05/OrthoView'
 import PerspectiveView from '@page/05/PerspectiveView'
 import Zfighting from '@page/05/Zfighting'
+import HelloCube from '@page/05/HelloCube'
 
 const routes = [
   {
@@ -118,6 +119,10 @@ const routes = [
   {
     path: '/05/Zfighting',
     component: Zfighting
+  },
+  {
+    path: '/05/HelloCube',
+    component: HelloCube
   }
 ]
 
