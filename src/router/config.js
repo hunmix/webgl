@@ -28,6 +28,9 @@ import Zfighting from '@page/05/Zfighting'
 import HelloCube from '@page/05/HelloCube'
 import ColoredCube from '@page/05/ColoredCube'
 
+import LightedCube from '@page/06/LightedCube'
+import LightedCubeAmbient from '@page/06/LightedCubeAmbient'
+
 const routes = [
   {
     path: '/01/helloCanvas',
@@ -128,6 +131,14 @@ const routes = [
   {
     path: '/05/ColoredCube',
     component: ColoredCube
+  },
+  {
+    path: '/06/LightedCube',
+    component: LightedCube
+  },
+  {
+    path: '/06/LightedCubeAmbient',
+    component: LightedCubeAmbient
   }
 ]
 

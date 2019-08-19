@@ -1,7 +1,8 @@
 import { initShaders } from './cuon-utils'
-import Matrix4 from './cuon-matrix'
+import Matrix4, { Vector3 } from './cuon-matrix'
 
 export default {
   initShaders,
-  Matrix4
+  Matrix4,
+  Vector3
 }
