@@ -31,6 +31,8 @@ import ColoredCube from '@page/05/ColoredCube'
 import LightedCube from '@page/06/LightedCube'
 import LightedCubeAmbient from '@page/06/LightedCubeAmbient'
 import LightedTranslatedRotatedCube from '@page/06/LightedTranslatedRotatedCube'
+import PointLightedCube from '@page/06/PointLightedCube'
+import PointLightedCubePerFragment from '@page/06/PointLightedCubePerFragment'
 
 const routes = [
   {
@@ -144,6 +146,14 @@ const routes = [
   {
     path: '/06/LightedTranslatedRotatedCube',
     component: LightedTranslatedRotatedCube
+  },
+  {
+    path: '/06/PointLightedCube',
+    component: PointLightedCube
+  },
+  {
+    path: '/06/PointLightedCubePerFragment',
+    component: PointLightedCubePerFragment
   }
 ]
 
