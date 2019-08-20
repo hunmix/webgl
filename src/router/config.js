@@ -30,6 +30,7 @@ import ColoredCube from '@page/05/ColoredCube'
 
 import LightedCube from '@page/06/LightedCube'
 import LightedCubeAmbient from '@page/06/LightedCubeAmbient'
+import LightedTranslatedRotatedCube from '@page/06/LightedTranslatedRotatedCube'
 
 const routes = [
   {
@@ -139,6 +140,10 @@ const routes = [
   {
     path: '/06/LightedCubeAmbient',
     component: LightedCubeAmbient
+  },
+  {
+    path: '/06/LightedTranslatedRotatedCube',
+    component: LightedTranslatedRotatedCube
   }
 ]
 
