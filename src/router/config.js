@@ -34,6 +34,8 @@ import LightedTranslatedRotatedCube from '@page/06/LightedTranslatedRotatedCube'
 import PointLightedCube from '@page/06/PointLightedCube'
 import PointLightedCubePerFragment from '@page/06/PointLightedCubePerFragment'
 
+import JointMode from '@page/07/JointMode'
+
 const routes = [
   {
     path: '/01/helloCanvas',
@@ -154,6 +156,10 @@ const routes = [
   {
     path: '/06/PointLightedCubePerFragment',
     component: PointLightedCubePerFragment
+  },
+  {
+    path: '/07/JointMode',
+    component: JointMode
   }
 ]
 

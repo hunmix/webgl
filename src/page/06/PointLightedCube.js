@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Canvas from '@page/canvas'
 import utils from '@/lib/index' // 初始化着色器, 细节先不管
-const { Matrix4, Vector3 } = utils
+const { Matrix4 } = utils
 
 class MultiAttributeSize extends Component {
   constructor () {
