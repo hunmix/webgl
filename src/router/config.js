@@ -35,6 +35,7 @@ import PointLightedCube from '@page/06/PointLightedCube'
 import PointLightedCubePerFragment from '@page/06/PointLightedCubePerFragment'
 
 import JointMode from '@page/07/JointMode'
+import MultiJointModel from '@page/07/MultiJointModel'
 
 const routes = [
   {
@@ -160,6 +161,10 @@ const routes = [
   {
     path: '/07/JointMode',
     component: JointMode
+  },
+  {
+    path: '/07/MultiJointModel',
+    component: MultiJointModel
   }
 ]
 
