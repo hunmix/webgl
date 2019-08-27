@@ -5,7 +5,7 @@ function Canvas ({ set, width, height, ...props }) {
   useEffect(() => {
     const canvasDom = canvas.current
     const gl = canvasDom.getContext('webgl')
-    set(gl)
+    set(gl, canvasDom)
   }, [canvas, set])
   return (
     <canvas ref={canvas} width={width || 400} height={height || 400} {...props}></canvas>

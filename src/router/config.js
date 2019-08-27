@@ -38,6 +38,8 @@ import JointMode from '@page/07/JointMode'
 import MultiJointModel from '@page/07/MultiJointModel'
 import MultiJointModelSegment from '@page/07/MultiJointModelSegment'
 
+import RotateCube from '@page/08/RotateCube'
+
 const routes = [
   {
     path: '/01/helloCanvas',
@@ -170,6 +172,10 @@ const routes = [
   {
     path: '/07/MultiJointModelSegment',
     component: MultiJointModelSegment
+  },
+  {
+    path: '/08/RotateCube',
+    component: RotateCube
   }
 ]
 
